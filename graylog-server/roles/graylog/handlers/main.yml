@@ -1,0 +1,17 @@
+---
+# handlers file for graylog
+  - name: "restart elasticsearch"
+    service: name=elasticsearch state=restarted
+    listen: "restart elasticsearch service"
+
+  - name: "start mongodb"
+    service: name=mongod state=restarted
+    listen: "start mongodb service"
+
+  - name: "restart graylog"
+    service: name=graylog-server state=restarted
+    listen: "restart graylog-server"
+
+  - name: "Restart nginx service" 
+    service: name=nginx state=restarted
+    listen:  "Restart nginx service"

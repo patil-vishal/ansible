@@ -1,0 +1,11 @@
+---
+- name: "copy mongodb.repo on remote server"
+  copy:
+    src: mongodb.repo
+    dest: /etc/yum.repose.d/
+
+- name: "Install mongodb"
+  yum:
+      pkg: mongodb-org
+      state: latest
+  notify: "start mongodb service"

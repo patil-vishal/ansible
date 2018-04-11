@@ -1,0 +1,7 @@
+---
+# tasks file for graylog
+- import_tasks : java.yml
+- import_tasks : elasticsearch.yml
+- import_tasks : mongo.yml
+- import_tasks : graylog.yml
+- import_tasks : nginx.yml

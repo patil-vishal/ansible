@@ -1,0 +1,25 @@
+---
+#- hosts:
+#  user:
+#  become: yes
+#  become_method: sudo
+#  tasks:
+- name: "copy elasticsearch repo on remote server"
+  copy:
+      src: elasticsearch.repo
+      dest: /etc/yum.repos.d/
+- name: "install rpm key"
+  rpm_key: 
+       key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+       state: present
+- name: "Install elasticsearch"
+  yum:
+     name: elasticsearch
+     state: present
+- name: "change cluster name in conf file"
+  lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: '^cluster.name '
+    insertafter: '^#cluster.name '
+    line: 'cluster.name: graylog'
+  notify: "restart elasticsearch service"

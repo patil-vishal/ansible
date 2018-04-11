@@ -1,0 +1,13 @@
+---
+- name: "Install graylog repo"
+  yum:
+    name: https://packages.graylog2.org/repo/packages/graylog-2.3-repository_latest.rpm
+    state: latest
+- name: "Installl graylog"
+  yum:
+     name: graylog-server
+     state: latest
+- copy:
+     src: server.conf
+     dest: /etc/graylog/server/
+     notify: "restart graylog-server"

@@ -1,0 +1,10 @@
+---
+- name: "Install nginx"
+  yum:
+     pkg: nginx
+     state: latest
+- name: "copy nginx conf file"
+  copy:
+     src: nginx.conf
+     dest: /etc/nginx/
+  notify: "Restart nginx service"

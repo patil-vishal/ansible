@@ -1,0 +1,18 @@
+---
+#- hosts:
+#  user:
+#  become: yes
+#  become_method: sudo
+#  tasks:
+  - name: "Download EPEL RPM"
+    get_url:
+         url: wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+         dest: /tmp/
+  - name: "Install epel RPM"
+    yum:
+        name : /tmp/epel-release-latest-7.noarch.rpm
+        state: present
+  - name: "Install JAVA on remote server"
+    yum:
+        name : "{{ java_pkg }}"
+        state: latest
